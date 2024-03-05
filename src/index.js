@@ -1,6 +1,6 @@
 import React from "react"
 // this line will help us to write html with js (their is a special extension caled .jsx )
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom/client"
 // this import contains the main function to create a react app
 
 // import gobal css
