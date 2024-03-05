@@ -2,37 +2,31 @@ import React, { useState } from 'react'
 
 const Comp10 = () => {
 
-    let [data, setData] = useState("")
+    let [data, setData] = useState({
+        name: "",
+        contact: "",
+        email: ""
+    })
 
     let handelSubmit = (event) => {
         event.preventDefault()
-
-        console.log(event)
-
-        alert()
+        console.log(data)
     }
 
     let handelChange = (event) => {
-
-        console.log(event.target.value)
         console.log(event.target.name)
+        console.log(event.target.value)
 
-        console.log(typeof(event.target.value))
+        let name = event.target.name
+        let value = event.target.value
 
-        // if (typeof(event.target.value) == "number") {
+        // match the pair
 
-        //     console.log("number input !")
-
-        // } else {
-        //     setData(event.target.value)
-        // }
-
-        if(data.length < 10){
-            setData(event.target.value)
-        }else{
-            console.log("limit reached !")
-        }
-
+        setData(prevData => {
+           return {...prevData , [name]:value}
+        })
+        
+        // setData({...prevData , [name]:value})
     }
 
     let date = new Date()
@@ -45,11 +39,28 @@ const Comp10 = () => {
 
                 <form onSubmit={handelSubmit} action="">
 
-                    <input onChange={handelChange} className='form-control' type="text" name='input1' placeholder='enter something 10 char only' value={data} />
+                    <div className='row gap-1'>
+                        <div className="col">
+                            <input onChange={handelChange} className='form-control' type="text" placeholder='enter name' name='name' value={data.name} />
+                        </div>
+                        <div className="col">
+                            <input onChange={handelChange} className='form-control' type="tel" placeholder='enter contact' name='contact' value={data.contact} />
+                        </div>
+                        <div>
+                            <input onChange={handelChange} type="email" className='form-control' placeholder='enter email' name='email' value={data.email} />
+                        </div>
 
-                    {/* <input type="date" min={date.toLocaleDateString()} name="" id="" /> */}
+                        <div className='col'>
+                            <button type='submit' className='btn btn-success'>
+                                submit
+                            </button>
+                            <button type='reset' className='btn btn-danger'>
+                                Reset
+                            </button>
+                        </div>
 
-                    <button className='btn btn-success' type='submit'>submit</button>
+                    </div>
+
 
                 </form>
 
